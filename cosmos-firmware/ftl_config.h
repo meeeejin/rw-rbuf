@@ -183,7 +183,7 @@
 
 //************************************************************************
 #define	BITS_PER_FLASH_CELL		SLC_MODE	//user configurable factor
-#define	USER_BLOCKS_PER_LUN		142		//user configurable factor //mijin 4096 240
+#define	USER_BLOCKS_PER_LUN		142         //user configurable factor e.g., 4096, 240 (current = 32GB)
 #define	USER_CHANNELS			(NUMBER_OF_CONNECTED_CHANNEL)		//user configurable factor
 #define	USER_WAYS				8			//user configurable factor
 //************************************************************************
