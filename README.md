@@ -1,12 +1,12 @@
 # RW and R-Buf
 
-## RW
+## RW interface for MySQL
 
 **RW** is **an intuitive and explicit storage command to address read stalls**. Upon read stall, both read and write can be requested to the flash storage in a single call. And the read can be processed as soon as the dirty page is copied to the storage buffer cache using DMA, without waiting for the NAND write to finish. By replacing two I/O calls for write and read upon read stalls with one call, RW can simplify the structure of the buffer manager in DBMS and reduce the number of I/O interrupts and consequently the number of context switches.
 
 ### Structure
 
-The major modifications to implement RW are made in the directories below:
+The major modifications on MySQL are made in directories below:
 
 - [`storage/innobase/buf`](mysql/storage/innobase/buf): The database buffer implementation for InnoDB
 - [`storage/innobase/fil`](mysql/storage/innobase/fil): File I/O operations for InnoDB
@@ -43,5 +43,18 @@ fil_mutex_enter_and_prepare_for_rw_io(
 #endif /* RW_CMD */
 ```
 
-## R-Buf
+## RW and R-Buf firmware for Cosmos+ OpenSSD
 
+**R-Buf** is a read-dedicated in-storage buffer. **RW** and **R-Buf** are complementary, so we combine two techniques to eliminate the read stall problem in both host and storage buffer. To evaluate the performance of the combined technique, we implement them on Comsos+ OpenSSD firmware.
+
+### Modifications
+
+1. RW
+
+- [`custom_io_cmd_completion.c`](cosmos-firmware/custom_io_cmd_completion.c)
+- [`custom_io_cmd_completion.h`](cosmos-firmware/custom_io_cmd_completion.h)
+
+2. R-Buf
+
+- [`data_buffer_ccmd.c`](cosmos-firmware/data_buffer_ccmd.c)
+- [`data_buffer_ccmd.h`](cosmos-firmware/data_buffer_ccmd.h)
