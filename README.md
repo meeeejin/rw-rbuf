@@ -6,24 +6,24 @@
 
 ### Structure
 
-The major modifications to implement RW were made in the directories below:
+The major modifications to implement RW are made in the directories below:
 
-- [`storage/innobase/buf`](storage/innobase/buf): The database buffer implementation for InnoDB
-- [`storage/innobase/fil`](storage/innobase/fil): File I/O operations for InnoDB
-- [`storage/innobase/include`](storage/innobase/include): The collection of header files for InnoDB
+- [`storage/innobase/buf`](mysql/storage/innobase/buf): The database buffer implementation for InnoDB
+- [`storage/innobase/fil`](mysql/storage/innobase/fil): File I/O operations for InnoDB
+- [`storage/innobase/include`](mysql/storage/innobase/include): The collection of header files for InnoDB
 
 RW consists of the following components:
 
 - Basic modules for the buffer manager to utilize the RW command (e.g., buffer initialization, buffer allocation, buffer replacement, etc.)
-  - [`buf0buf.cc`](storage/innobase/buf/buf0buf.cc)
-- The module for proceeding the transaction immediately using the read data buffer without a separate free buffer acquisition procedure
-  - [`buf0rea.cc`](storage/innobase/buf/buf0rea.cc)
-  - [`buf0lru.cc`](storage/innobase/buf/buf0lru.cc)
-- The module for sending the RW NVM command set to storage
-  - [`rw0rw.cc`](storage/innobase/rw/rw0rw.cc), [`rw0rw.h`](storage/innobase/include/rw0rw.h)
-  - [`buf0flu.cc`](storage/innobase/buf/buf0flu.cc)
-  - [`fil0fil.cc`](storage/innobase/fil/fil0fil.cc)
-  - [`os0file.cc`](storage/innobase/os/os0file.cc)
+  - [`buf0buf.cc`](mysql/storage/innobase/buf/buf0buf.cc)
+- The module to send the RW NVM command set to storage
+  - [`rw0rw.cc`](mysql/storage/innobase/rw/rw0rw.cc), [`rw0rw.h`](mysql/storage/innobase/include/rw0rw.h)
+  - [`buf0flu.cc`](mysql/storage/innobase/buf/buf0flu.cc)
+  - [`fil0fil.cc`](mysql/storage/innobase/fil/fil0fil.cc)
+  - [`os0file.cc`](mysql/storage/innobase/os/os0file.cc)
+- The module to proceed the transaction immediately using the read data buffer without a separate free buffer acquisition procedure
+  - [`buf0rea.cc`](mysql/storage/innobase/buf/buf0rea.cc)
+  - [`buf0lru.cc`](mysql/storage/innobase/buf/buf0lru.cc)
 
 You can check the modified code by searching for the `#ifdef RW_CMD` keyword in the file. For example:
 
