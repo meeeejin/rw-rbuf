@@ -1,7 +1,7 @@
 # RW and R-Buf
 
 ## Publication
-- Mijin An, Soojun Im, Dawoon Jung, and Sang-Won Lee. 2022. [Your Read is Our Priority in Flash Storage](https://vldb.org/pvldb/vol15/p1911-lee.pdf). Proc. VLDB Endow. 15, 9 (May 2022), 1911–1923. https://doi.org/10.14778/3538598.3538612
+- **Mijin An**, Soojun Im, Dawoon Jung, and Sang-Won Lee. 2022. [Your Read is Our Priority in Flash Storage](https://vldb.org/pvldb/vol15/p1911-lee.pdf). Proc. VLDB Endow. 15, 9 (May 2022), 1911–1923. https://doi.org/10.14778/3538598.3538612
 
 ## RW interface for MySQL
 
